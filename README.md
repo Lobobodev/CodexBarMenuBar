@@ -32,7 +32,7 @@ brew install steipete/tap/codexbar
 
 Or build from source:
 ```bash
-git clone https://github.com/user/CodexBarMenuBar.git
+git clone https://github.com/Lobobodev/CodexBarMenuBar.git
 cd CodexBarMenuBar
 open CodexBarMenuBar.xcodeproj
 ```
@@ -96,7 +96,7 @@ brew install steipete/tap/codexbar
 
 或从源码构建：
 ```bash
-git clone https://github.com/user/CodexBarMenuBar.git
+git clone https://github.com/Lobobodev/CodexBarMenuBar.git
 cd CodexBarMenuBar
 open CodexBarMenuBar.xcodeproj
 ```
