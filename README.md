@@ -21,6 +21,12 @@ In the screenshot, three providers are shown side-by-side in the menu bar:
 
 That's it — your AI quota always visible, never hidden behind another window.
 
+### Customizable in Settings
+
+![Settings Screenshot](screenshots/settings.png)
+
+Drag-to-reorder providers, toggle each metric independently (Bar, %, ⏱ Bar, ⏱ Text), enable/disable any provider with one click.
+
 ## Versioning
 
 **This app's version tracks [CodexBar CLI](https://github.com/steipete/CodexBar) version.** For example, CodexBarMenuBar `0.26.1` matches CodexBar CLI `0.26.1`. Always install the matching version of both.
@@ -99,6 +105,12 @@ The app periodically runs `codexbar usage --provider <name> --format json` and r
 - **DeepSeek**：余额 `¥44.15`
 
 AI 用量始终在你眼前，再也不用埋在别的窗口里。
+
+### 设置界面可自由定制
+
+![设置界面截图](screenshots/settings.png)
+
+拖拽调整 Provider 顺序，每项指标（进度条 / 百分比 / 倒计时条 / 倒计时文字）独立开关，一键启用/禁用任何 Provider。
 
 ## 版本号说明
 
