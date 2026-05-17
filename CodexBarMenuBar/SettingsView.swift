@@ -199,6 +199,8 @@ struct GeneralSettingsView: View {
     @AppStorage("launchAtLogin") private var launchAtLogin = false
     @AppStorage("showUsageAsUsed") private var showUsageAsUsed = true
     @AppStorage("resetTimeAsAbsolute") private var resetTimeAsAbsolute = false
+    @AppStorage("colorPercentText") private var colorPercentText = false
+    @AppStorage("colorCountdownText") private var colorCountdownText = false
 
     var body: some View {
         ScrollView(.vertical, showsIndicators: true) {
@@ -266,6 +268,18 @@ struct GeneralSettingsView: View {
                         "Show reset time as clock",
                         subtitle: "Display reset times as absolute clock values instead of countdowns.",
                         isOn: $resetTimeAsAbsolute
+                    )
+
+                    PreferenceToggleRow(
+                        "Color percentage text",
+                        subtitle: "Tint the percentage number by usage (green when low, red when high). The W: prefix stays default.",
+                        isOn: $colorPercentText
+                    )
+
+                    PreferenceToggleRow(
+                        "Color countdown time",
+                        subtitle: "Tint the countdown text by time remaining (orange when a lot of time is left, green near reset).",
+                        isOn: $colorCountdownText
                     )
                 }
 
@@ -782,9 +796,9 @@ struct ProviderDetailView: View {
             Toggle("%", isOn: windowSettingBinding(key: key, keyPath: \.showPercent))
                 .toggleStyle(.checkbox)
             if hasResetTime {
-                Toggle("⏱ Bar", isOn: windowSettingBinding(key: key, keyPath: \.showCountdownBar))
+                Toggle("Countdown bar", isOn: windowSettingBinding(key: key, keyPath: \.showCountdownBar))
                     .toggleStyle(.checkbox)
-                Toggle("⏱ Text", isOn: windowSettingBinding(key: key, keyPath: \.showCountdownText))
+                Toggle("Countdown time", isOn: windowSettingBinding(key: key, keyPath: \.showCountdownText))
                     .toggleStyle(.checkbox)
             }
         }

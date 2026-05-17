@@ -21,13 +21,15 @@ enum StatusItemRenderer {
 
     static func renderCombined(providers: [ProviderData]) -> NSImage {
         let font = NSFont.monospacedDigitSystemFont(ofSize: 11, weight: .regular)
-        let attrs: [NSAttributedString.Key: Any] = [
+        let defaultAttrs: [NSAttributedString.Key: Any] = [
             .font: font,
             .foregroundColor: NSColor.labelColor
         ]
 
         let showAsUsed = UserDefaults.standard.object(forKey: "showUsageAsUsed") as? Bool ?? true
         let resetTimeAbsolute = UserDefaults.standard.bool(forKey: "resetTimeAsAbsolute")
+        let colorPercentText = UserDefaults.standard.bool(forKey: "colorPercentText")
+        let colorCountdownText = UserDefaults.standard.bool(forKey: "colorCountdownText")
 
         let totalHeight: CGFloat = 22
         let barWidth: CGFloat = 40
@@ -37,6 +39,10 @@ enum StatusItemRenderer {
         let countdownBarHeight: CGFloat = 6
         let iconSize: CGFloat = 16
         let dividerPad: CGFloat = 6
+
+        func textWidth(_ s: String) -> CGFloat {
+            (s as NSString).size(withAttributes: defaultAttrs).width
+        }
 
         var segments: [Segment] = []
         segments.append(.init(.spacer, 4))
@@ -63,9 +69,18 @@ enum StatusItemRenderer {
                         segments.append(.init(.spacer, 2))
                     }
                     if ws.showPercent {
+                        // Split into prefix (e.g. " W:") and value (e.g. "2%") so we can
+                        // optionally color only the numeric value while keeping the prefix
+                        // in the default label color.
                         let prefix = rw.menuBarPrefix ?? ""
-                        let pctText = rw.usedPercent >= 0 ? "\(prefix)\(Int(rw.usedPercent))%" : "\(prefix)--"
-                        segments.append(.init(.text(pctText), (pctText as NSString).size(withAttributes: attrs).width))
+                        if !prefix.isEmpty {
+                            segments.append(.init(.text(prefix, NSColor.labelColor), textWidth(prefix)))
+                        }
+                        let valueText = rw.usedPercent >= 0 ? "\(Int(rw.usedPercent))%" : "--"
+                        let valueColor = (colorPercentText && rw.usedPercent >= 0)
+                            ? colorForPercent(rw.usedPercent)
+                            : NSColor.labelColor
+                        segments.append(.init(.text(valueText, valueColor), textWidth(valueText)))
                     }
                     if let resetsAt = rw.resetsAt {
                         if ws.showCountdownBar {
@@ -77,7 +92,16 @@ enum StatusItemRenderer {
                         }
                         if ws.showCountdownText {
                             let rText = " \(ResetTimeFormatter.format(date: resetsAt, asAbsolute: resetTimeAbsolute))"
-                            segments.append(.init(.text(rText), (rText as NSString).size(withAttributes: attrs).width))
+                            let textColor: NSColor
+                            if colorCountdownText {
+                                let winMin = Double(rw.windowMinutes ?? 300)
+                                let remainSec = max(0, resetsAt.timeIntervalSinceNow)
+                                let remainPct = min(100, remainSec / (winMin * 60) * 100)
+                                textColor = colorForCountdownText(remainPct)
+                            } else {
+                                textColor = NSColor.labelColor
+                            }
+                            segments.append(.init(.text(rText, textColor), textWidth(rText)))
                         }
                     }
                     segments.append(.init(.spacer, 3))
@@ -86,7 +110,7 @@ enum StatusItemRenderer {
             case .balance:
                 if provider.showBalance {
                     let text = provider.balance ?? "--"
-                    segments.append(.init(.text(text), (text as NSString).size(withAttributes: attrs).width))
+                    segments.append(.init(.text(text, NSColor.labelColor), textWidth(text)))
                 }
             }
         }
@@ -99,7 +123,9 @@ enum StatusItemRenderer {
             var x: CGFloat = 0
             for seg in segments {
                 switch seg.kind {
-                case .text(let str):
+                case .text(let str, let color):
+                    var attrs = defaultAttrs
+                    attrs[.foregroundColor] = color
                     let size = (str as NSString).size(withAttributes: attrs)
                     let textY = (totalHeight - size.height) / 2
                     (str as NSString).draw(at: NSPoint(x: x, y: textY), withAttributes: attrs)
@@ -182,6 +208,23 @@ enum StatusItemRenderer {
         }
     }
 
+    /// Color gradient for the countdown text. Unlike `colorForCountdown` (which
+    /// uses red→green to signal "danger fading"), this is orange→green only —
+    /// orange when a long time remains, green when reset is imminent. There is
+    /// no red because long remaining time isn't a danger signal for the user.
+    static func colorForCountdownText(_ remainingPct: Double) -> NSColor {
+        // remainingPct: 100 = window just started (most time left), 0 = about to reset.
+        let elapsed = max(0, min(100, 100 - remainingPct))
+        switch elapsed {
+        case ..<50:
+            return interpolate(from: .systemOrange, to: .systemYellow, t: elapsed / 50.0)
+        case 50..<90:
+            return interpolate(from: .systemYellow, to: .systemGreen, t: (elapsed - 50) / 40.0)
+        default:
+            return .systemGreen
+        }
+    }
+
     private static func interpolate(from: NSColor, to: NSColor, t: Double) -> NSColor {
         let f = from.usingColorSpace(.sRGB) ?? from
         let c = to.usingColorSpace(.sRGB) ?? to
@@ -195,7 +238,7 @@ enum StatusItemRenderer {
     }
 
     private enum SegmentKind {
-        case text(String)
+        case text(String, NSColor)
         case icon(String)
         case bar(Double)
         case countdownBar(Double)
