@@ -1,6 +1,6 @@
 # CodexBarMenuBar
 
-A macOS Menu Bar Extra that visualizes your AI provider usage at a glance. Powered by [CodexBar](https://github.com/steipete/CodexBar) CLI.
+> ⚠️ **This app requires [CodexBar CLI](https://github.com/steipete/CodexBar) to be installed.** It does NOT call AI provider APIs directly — all data is fetched through the CodexBar CLI. Without CodexBar CLI, this app shows nothing.
 
 ![Menu Bar Screenshot](screenshots/menubar.png)
 
@@ -9,10 +9,16 @@ The screenshot above shows three providers in the macOS menu bar:
 - **ZAI**: usage bar with `0% W:1%`
 - **DeepSeek**: balance `¥44.15`
 
+A macOS Menu Bar Extra that visualizes your AI provider usage at a glance.
+
+## Versioning
+
+**This app's version tracks [CodexBar CLI](https://github.com/steipete/CodexBar) version.** For example, CodexBarMenuBar `0.26.1` matches CodexBar CLI `0.26.1`. Always install the matching version of both.
+
 ## Features
 
 - **Real-time usage bars** with color-coded progress (green -> yellow -> orange -> red)
-- **40+ AI providers** supported: Claude, Cursor, Gemini, Copilot, Windsurf, ZAI, DeepSeek, OpenAI, Bedrock, and many more
+- **40 AI providers** supported: Claude, Cursor, Gemini, Copilot, Windsurf, ZAI, DeepSeek, OpenAI, Bedrock, and many more
 - **Per-window metrics**: session usage, weekly usage, and provider-specific extra windows (e.g., Claude Designs, Daily Routines)
 - **Countdown timers**: optional countdown bar and text for reset times
 - **Balance display**: credit-based providers show remaining balance (e.g., DeepSeek `¥44.15`)
@@ -24,17 +30,16 @@ The screenshot above shows three providers in the macOS menu bar:
 
 ## Prerequisites
 
-- macOS 15.0+
-- [CodexBar CLI](https://github.com/steipete/CodexBar) **v0.26+** installed at `/opt/homebrew/bin/codexbar` (Apple Silicon) or `/usr/local/bin/codexbar` (Intel)
-
-Install CodexBar:
-```bash
-brew install --cask codexbar
-```
+1. macOS 15.0+
+2. **[CodexBar](https://github.com/steipete/CodexBar) installed and configured with your AI provider accounts.** Install CodexBar (the CLI provider) via Homebrew:
+   ```bash
+   brew install --cask codexbar
+   ```
+   After installation, open CodexBar.app and log in to the AI providers you want to monitor.
 
 ## Installation
 
-1. Download `CodexBarMenuBar.zip` from [Releases](../../releases)
+1. Download `CodexBarMenuBar.zip` from [Releases](../../releases) (match the version with your installed CodexBar CLI)
 2. Unzip and drag `CodexBarMenuBar.app` to `/Applications`
 3. Launch the app — it appears in the menu bar, no Dock icon
 
@@ -46,7 +51,7 @@ open CodexBarMenuBar.xcodeproj
 ```
 Then build and run with `Cmd+R` in Xcode.
 
-## Supported Providers
+## Supported Providers (matches CodexBar CLI 0.26+)
 
 | Type | Providers |
 |------|-----------|
@@ -55,8 +60,6 @@ Then build and run with `Cmd+R` in Xcode.
 
 ## How It Works
 
-CodexBarMenuBar does **not** call any AI provider APIs directly. All data is fetched through the CodexBar CLI:
-
 ```
 CodexBarMenuBar  -->  codexbar CLI  -->  AI Provider APIs
      (display)        (data fetch)       (authentication)
@@ -64,26 +67,15 @@ CodexBarMenuBar  -->  codexbar CLI  -->  AI Provider APIs
 
 The app periodically runs `codexbar usage --provider <name> --format json` and renders the results in the menu bar.
 
-## Changelog
-
-### v1.1 (2026-05-17)
-- Added support for 10 new providers from CodexBar CLI v0.26+: OpenAI, Manus, Moonshot, MiMo, Doubao, Crof, Venice, CmdCode, StepFun, Bedrock
-- Display account organization and data source in provider details
-- Compatible with CodexBar CLI v0.26+ JSON schema (`version`, `identity`, `source` fields)
-
-### v1.0 (2026-05-07)
-- Initial release with 30 providers
-- Per-window display settings, drag-and-drop reordering, countdown timers
-
 ## License
 
 [MIT](LICENSE)
 
 ---
 
-# CodexBarMenuBar
+# CodexBarMenuBar（中文）
 
-macOS 菜单栏扩展，实时可视化 AI 服务用量。基于 [CodexBar](https://github.com/steipete/CodexBar) CLI。
+> ⚠️ **本应用需要先安装 [CodexBar CLI](https://github.com/steipete/CodexBar)。** 本应用**不直接调用任何 AI 提供商 API**，所有数据通过 CodexBar CLI 获取。没有 CodexBar CLI，本应用什么都不会显示。
 
 ![菜单栏截图](screenshots/menubar.png)
 
@@ -92,10 +84,16 @@ macOS 菜单栏扩展，实时可视化 AI 服务用量。基于 [CodexBar](http
 - **ZAI**：进度条 `0% W:1%`
 - **DeepSeek**：余额 `¥44.15`
 
+macOS 菜单栏扩展，实时可视化 AI 服务用量。
+
+## 版本号说明
+
+**本应用的版本号跟随 [CodexBar CLI](https://github.com/steipete/CodexBar) 版本。** 例如 CodexBarMenuBar `0.26.1` 对应 CodexBar CLI `0.26.1`。请始终安装版本相匹配的两个程序。
+
 ## 功能
 
 - **实时用量进度条**，颜色随用量变化（绿 -> 黄 -> 橙 -> 红）
-- **支持 40+ AI 提供商**：Claude、Cursor、Gemini、Copilot、Windsurf、ZAI、DeepSeek、OpenAI、Bedrock 等
+- **支持 40 个 AI 提供商**：Claude、Cursor、Gemini、Copilot、Windsurf、ZAI、DeepSeek、OpenAI、Bedrock 等
 - **多维度指标**：会话用量、周用量，以及提供商特有窗口（如 Claude 的 Designs、Daily Routines）
 - **倒计时显示**：可选的倒计时进度条和文字，显示重置时间
 - **余额显示**：按量付费的提供商直接显示余额（如 DeepSeek `¥44.15`）
@@ -107,17 +105,16 @@ macOS 菜单栏扩展，实时可视化 AI 服务用量。基于 [CodexBar](http
 
 ## 前置条件
 
-- macOS 15.0+
-- 已安装 [CodexBar CLI](https://github.com/steipete/CodexBar) **v0.26+**（路径 `/opt/homebrew/bin/codexbar` Apple Silicon 或 `/usr/local/bin/codexbar` Intel）
-
-安装 CodexBar：
-```bash
-brew install --cask codexbar
-```
+1. macOS 15.0+
+2. **已安装并配置好 [CodexBar](https://github.com/steipete/CodexBar)**（数据提供方）。通过 Homebrew 安装：
+   ```bash
+   brew install --cask codexbar
+   ```
+   安装后打开 CodexBar.app，登录你想监控的 AI 提供商账号。
 
 ## 安装
 
-1. 从 [Releases](../../releases) 下载 `CodexBarMenuBar.zip`
+1. 从 [Releases](../../releases) 下载 `CodexBarMenuBar.zip`（版本号需要与已安装的 CodexBar CLI 一致）
 2. 解压后将 `CodexBarMenuBar.app` 拖入 `/Applications`
 3. 启动应用 — 直接出现在菜单栏，无 Dock 图标
 
@@ -129,9 +126,14 @@ open CodexBarMenuBar.xcodeproj
 ```
 在 Xcode 中 `Cmd+R` 运行。
 
-## 工作原理
+## 支持的 Provider（对应 CodexBar CLI 0.26+）
 
-CodexBarMenuBar **不直接调用任何 AI 提供商 API**。所有数据通过 CodexBar CLI 获取：
+| 类型 | Provider |
+|------|----------|
+| **用量进度条** | Claude, Codex, OpenAI, ZAI, Cursor, Gemini, Copilot, Windsurf, OpenCode, OC Go, Alibaba, Antigravity, Kiro, MiniMax, Kimi, Droid, Augment, JetBrains AI, Vertex AI, Mistral, Synthetic, Codebuff, Abacus AI, Perplexity, Amp, Ollama, Manus, MiMo, Doubao, Crof, CmdCode, StepFun |
+| **余额显示** | DeepSeek, OpenRouter, Warp, Kilo, KimiK2, Moonshot, Venice, Bedrock |
+
+## 工作原理
 
 ```
 CodexBarMenuBar  -->  codexbar CLI  -->  AI 提供商 API
@@ -139,17 +141,6 @@ CodexBarMenuBar  -->  codexbar CLI  -->  AI 提供商 API
 ```
 
 应用定期运行 `codexbar usage --provider <name> --format json`，将结果渲染到菜单栏。
-
-## 更新日志
-
-### v1.1 (2026-05-17)
-- 新增对 CodexBar CLI v0.26+ 的 10 个新 Provider 支持：OpenAI、Manus、Moonshot、MiMo、Doubao、Crof、Venice、CmdCode、StepFun、Bedrock
-- 在详情页显示账号所属组织和数据来源
-- 兼容 CodexBar CLI v0.26+ 的新 JSON 字段（`version`、`identity`、`source`）
-
-### v1.0 (2026-05-07)
-- 首次发布，支持 30 个 Provider
-- 每窗口独立显示设置、拖拽排序、倒计时
 
 ## 许可证
 
