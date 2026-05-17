@@ -1,0 +1,88 @@
+name: Bug report
+description: Report a problem with CodexBarMenuBar
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug! Please fill out the form below.
+
+  - type: input
+    id: cbm-version
+    attributes:
+      label: CodexBarMenuBar version
+      description: See Settings → About (e.g., `0.26.1`).
+      placeholder: "0.26.1"
+    validations:
+      required: true
+
+  - type: input
+    id: cli-version
+    attributes:
+      label: CodexBar CLI version
+      description: Run `codexbar --version` in Terminal.
+      placeholder: "0.26.1"
+    validations:
+      required: true
+
+  - type: input
+    id: macos
+    attributes:
+      label: macOS version
+      description: See Apple menu → About This Mac (e.g., `15.0` or `26.4`).
+      placeholder: "26.4"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: arch
+    attributes:
+      label: Mac architecture
+      options:
+        - Apple Silicon (M1/M2/M3/M4)
+        - Intel
+    validations:
+      required: true
+
+  - type: input
+    id: provider
+    attributes:
+      label: Affected provider(s)
+      description: Which AI provider is showing wrong data? (e.g., Claude, ZAI)
+      placeholder: "Claude, ZAI"
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Describe the bug. Include screenshots if helpful.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What did you expect to happen instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open Settings → Providers
+        2. Enable XYZ
+        3. ...
+    validations:
+      required: false
+
+  - type: textarea
+    id: cli-output
+    attributes:
+      label: codexbar CLI output (optional)
+      description: |
+        If applicable, paste the output of:
+        `codexbar usage --provider <name> --format json`
+      render: json

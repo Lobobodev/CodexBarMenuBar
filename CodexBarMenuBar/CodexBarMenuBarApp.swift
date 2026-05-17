@@ -24,6 +24,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         menuBarManager = MenuBarManager(dataManager: dataManager)
+
+        Task { @MainActor in
+            try? await Task.sleep(for: .seconds(1))
+            OnboardingHelper.checkAndPromptIfMissing()
+        }
     }
 
     func applicationWillTerminate(_ notification: Notification) {

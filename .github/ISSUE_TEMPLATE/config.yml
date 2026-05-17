@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: CodexBar CLI issues
+    url: https://github.com/steipete/CodexBar/issues
+    about: Bugs related to CodexBar CLI itself (data fetching, provider login, etc.) should be reported upstream.
