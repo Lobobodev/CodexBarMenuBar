@@ -4,7 +4,18 @@
 
 </div>
 
-# CodexBarMenuBar
+# CodexBarMenuBar 📊 — Your AI usage, always one glance away.
+
+> Every AI provider's quota, right in your macOS menu bar.
+
+[![Release](https://img.shields.io/github/v/release/Lobobodev/CodexBarMenuBar?label=release&color=blue)](https://github.com/Lobobodev/CodexBarMenuBar/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/Lobobodev/CodexBarMenuBar/total?label=downloads&color=brightgreen)](https://github.com/Lobobodev/CodexBarMenuBar/releases)
+[![macOS](https://img.shields.io/badge/macOS-15%2B-blue)](https://www.apple.com/macos)
+[![Swift](https://img.shields.io/badge/Swift-6.0-orange)](https://swift.org)
+[![Signed](https://img.shields.io/badge/signed-Developer%20ID%20%2B%20Notarized-success)](https://developer.apple.com/documentation/security/notarizing-macos-software-before-distribution)
+[![License](https://img.shields.io/badge/license-MIT-purple)](LICENSE)
+
+---
 
 ### ⚡ See your AI usage at a glance — right in the macOS menu bar.
 
