@@ -1,3 +1,9 @@
+<div align="center">
+
+**[English](#codexbarmenubar) | [简体中文](#codexbarmenubar中文)**
+
+</div>
+
 # CodexBarMenuBar
 
 ### ⚡ See your AI usage at a glance — right in the macOS menu bar.
