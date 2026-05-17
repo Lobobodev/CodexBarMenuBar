@@ -824,14 +824,22 @@ struct ProviderDetailView: View {
 struct AboutSettingsView: View {
     @State private var iconHover = false
 
+    private var appIcon: NSImage {
+        if let url = Bundle.main.url(forResource: "AppIcon", withExtension: "icns"),
+           let image = NSImage(contentsOf: url) {
+            return image
+        }
+        return NSApplication.shared.applicationIconImage
+    }
+
     var body: some View {
         VStack(spacing: 12) {
             Button {
-                if let url = URL(string: "https://github.com/steipete/CodexBar") {
+                if let url = URL(string: "https://github.com/Lobobodev/CodexBarMenuBar") {
                     NSWorkspace.shared.open(url)
                 }
             } label: {
-                Image(nsImage: NSApplication.shared.applicationIconImage)
+                Image(nsImage: appIcon)
                     .resizable()
                     .frame(width: 92, height: 92)
                     .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
@@ -860,6 +868,11 @@ struct AboutSettingsView: View {
             }
 
             VStack(alignment: .center, spacing: 10) {
+                AboutLinkRow(
+                    icon: "chevron.left.forwardslash.chevron.right",
+                    title: "View on GitHub",
+                    url: "https://github.com/Lobobodev/CodexBarMenuBar"
+                )
                 AboutLinkRow(
                     icon: "terminal",
                     title: "Powered by CodexBar CLI",
