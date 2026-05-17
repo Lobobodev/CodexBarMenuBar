@@ -39,6 +39,24 @@ That's it — your AI quota always visible, never hidden behind another window.
 
 Drag-to-reorder providers, toggle each metric independently (Bar, %, ⏱ Bar, ⏱ Text), enable/disable any provider with one click.
 
+## Why this exists — and a note to CodexBar's maintainer 🙏
+
+[**CodexBar**](https://github.com/steipete/CodexBar) already has a built-in "merged menu bar mode" (v0.26+) that can display multiple providers side-by-side. **CodexBarMenuBar exists as a UI experiment**, adding finer visual controls on top of CodexBar's data:
+
+| Feature | CodexBar (merged mode) | CodexBarMenuBar |
+|---|---|---|
+| Multiple providers in menu bar | ✅ | ✅ |
+| Usage percentage text | ✅ | ✅ |
+| **Color-coded progress bars** (green → yellow → orange → red) | ❌ text only | ✅ |
+| **Countdown bar** for reset time | ❌ | ✅ |
+| **Countdown text** ("1h 23m left") visible directly | ❌ click to view | ✅ |
+| **Per-window display toggles** (4 independent checkboxes per metric) | ❌ global toggle | ✅ |
+| Open source | ❌ | ✅ MIT |
+
+> **Dear [@steipete](https://github.com/steipete) and CodexBar community** — these visualizations would be a wonderful addition to CodexBar itself. If they ever land upstream, **this project happily becomes obsolete** and we'd recommend everyone uninstall this in favor of CodexBar's native implementation. Until then, this app serves as a reference UI / playground for what those features could look like. CodexBarMenuBar uses the CodexBar CLI under the hood and would not exist without it — huge thanks. 🙏
+
+If you're satisfied with CodexBar's built-in merged mode, **you don't need this app**.
+
 ## Versioning
 
 **This app's version tracks [CodexBar CLI](https://github.com/steipete/CodexBar) version.** For example, CodexBarMenuBar `0.26.1` matches CodexBar CLI `0.26.1`. Always install the matching version of both.
@@ -149,6 +167,24 @@ AI 用量始终在你眼前，再也不用埋在别的窗口里。
 ![设置界面截图](screenshots/settings.png)
 
 拖拽调整 Provider 顺序，每项指标（进度条 / 百分比 / 倒计时条 / 倒计时文字）独立开关，一键启用/禁用任何 Provider。
+
+## 这个项目存在的意义 —— 给 CodexBar 作者的一封信 🙏
+
+[**CodexBar**](https://github.com/steipete/CodexBar) 从 v0.26 开始已经自带"合并菜单栏模式"（merged menu bar mode），可以在菜单栏同时显示多个 Provider。**CodexBarMenuBar 是一个 UI 实验项目**，在 CodexBar 的数据之上提供更精细的可视化控制：
+
+| 功能 | CodexBar（合并模式） | CodexBarMenuBar |
+|---|---|---|
+| 多 Provider 并排显示 | ✅ | ✅ |
+| 百分比文字 | ✅ | ✅ |
+| **彩色进度条**（绿 → 黄 → 橙 → 红） | ❌ 纯文字 | ✅ |
+| **重置倒计时条** | ❌ | ✅ |
+| **直接显示倒计时文字**（"还剩 1h 23m"） | ❌ 需要点开 | ✅ |
+| **per-window 独立开关**（每个指标 4 个独立 checkbox） | ❌ 全局开关 | ✅ |
+| 开源 | ❌ | ✅ MIT |
+
+> **致 [@steipete](https://github.com/steipete) 和 CodexBar 社区** —— 如果上述这些可视化能直接进入 CodexBar 本体，那就太好了。一旦合并上去，**这个项目会愉快地停止维护**，并建议所有用户卸载它、改用 CodexBar 原生实现。在那之前，本项目作为一个参考 UI / 想法的"游乐场"存在。CodexBarMenuBar 完全依赖 CodexBar CLI 提供数据，没有它就没有本项目 —— 衷心感谢。🙏
+
+如果你觉得 CodexBar 自带的合并模式已经够用，**那你不需要这个 app**。
 
 ## 版本号说明
 
