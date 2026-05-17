@@ -651,7 +651,7 @@ struct ProviderDetailView: View {
                             .truncationMode(.tail)
                     }
                 }
-                if let source = usage.source {
+                if let source = usage.source, source != "auto" {
                     GridRow {
                         Text("Source")
                             .frame(width: 80, alignment: .leading)
@@ -849,8 +849,11 @@ struct AboutSettingsView: View {
                 Text("CodexBarMenuBar")
                     .font(.title3)
                     .bold()
-                Text("Version 1.0")
+                Text("Version 0.26.1")
                     .foregroundStyle(.secondary)
+                Text("Tracks CodexBar CLI version")
+                    .font(.caption2)
+                    .foregroundStyle(.tertiary)
                 Text("Keep your AI usage in view.")
                     .font(.footnote)
                     .foregroundStyle(.secondary)
