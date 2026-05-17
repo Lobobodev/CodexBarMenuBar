@@ -50,6 +50,12 @@ jobs:
           cd build/export
           /usr/bin/ditto -c -k --keepParent CodexBarMenuBar.app ../CodexBarMenuBar-v${{ steps.version.outputs.VERSION }}.zip
 
+      - name: Generate SHA256 checksum
+        run: |
+          cd build
+          shasum -a 256 CodexBarMenuBar-v${{ steps.version.outputs.VERSION }}.zip > CodexBarMenuBar-v${{ steps.version.outputs.VERSION }}.zip.sha256
+          cat CodexBarMenuBar-v${{ steps.version.outputs.VERSION }}.zip.sha256
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v3
         with:
@@ -89,3 +95,4 @@ jobs:
             ```
           files: |
             build/CodexBarMenuBar-v${{ steps.version.outputs.VERSION }}.zip
+            build/CodexBarMenuBar-v${{ steps.version.outputs.VERSION }}.zip.sha256
