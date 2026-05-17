@@ -100,7 +100,18 @@ The app periodically runs `codexbar usage --provider <name> --format json` and r
 
 ---
 
-# CodexBarMenuBar（中文）
+# CodexBarMenuBar 📊（中文）— AI 用量一眼可见
+
+> 所有 AI 提供商的额度，直接显示在你的 macOS 菜单栏。
+
+[![Release](https://img.shields.io/github/v/release/Lobobodev/CodexBarMenuBar?label=最新版本&color=blue)](https://github.com/Lobobodev/CodexBarMenuBar/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/Lobobodev/CodexBarMenuBar/total?label=下载量&color=brightgreen)](https://github.com/Lobobodev/CodexBarMenuBar/releases)
+[![macOS](https://img.shields.io/badge/macOS-15%2B-blue)](https://www.apple.com/macos)
+[![Swift](https://img.shields.io/badge/Swift-6.0-orange)](https://swift.org)
+[![Signed](https://img.shields.io/badge/%E7%AD%BE%E5%90%8D-Developer%20ID%20%2B%20%E5%85%AC%E8%AF%81-success)](https://developer.apple.com/documentation/security/notarizing-macos-software-before-distribution)
+[![License](https://img.shields.io/badge/%E8%AE%B8%E5%8F%AF%E8%AF%81-MIT-purple)](LICENSE)
+
+---
 
 ### ⚡ AI 用量一眼可见 — 直接显示在 macOS 顶部菜单栏
 
