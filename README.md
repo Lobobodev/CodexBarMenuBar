@@ -1,15 +1,19 @@
 # CodexBarMenuBar
 
-> ⚠️ **This app requires [CodexBar CLI](https://github.com/steipete/CodexBar) to be installed.** It does NOT call AI provider APIs directly — all data is fetched through the CodexBar CLI. Without CodexBar CLI, this app shows nothing.
+### ⚡ See your AI usage at a glance — right in the macOS menu bar.
+
+**No need to open CodexBar.app. No clicks. No switching apps.** Just look up to the menu bar and instantly know how much Claude, Codex, ZAI, DeepSeek and 35+ other AI providers you've used today.
+
+> ⚠️ **Requires [CodexBar CLI](https://github.com/steipete/CodexBar).** This app does NOT call AI provider APIs directly — all data is fetched through CodexBar CLI. Without CodexBar CLI, this app shows nothing.
 
 ![Menu Bar Screenshot](screenshots/menubar.png)
 
-The screenshot above shows three providers in the macOS menu bar:
+In the screenshot, three providers are shown side-by-side in the menu bar:
 - **Claude**: green usage bar with `19% W:2%` (session and weekly)
 - **ZAI**: usage bar with `0% W:1%`
 - **DeepSeek**: balance `¥44.15`
 
-A macOS Menu Bar Extra that visualizes your AI provider usage at a glance.
+That's it — your AI quota always visible, never hidden behind another window.
 
 ## Versioning
 
@@ -55,8 +59,8 @@ Then build and run with `Cmd+R` in Xcode.
 
 | Type | Providers |
 |------|-----------|
-| **Usage Bar** | Claude, Codex, OpenAI, ZAI, Cursor, Gemini, Copilot, Windsurf, OpenCode, OC Go, Alibaba, Antigravity, Kiro, MiniMax, Kimi, Droid, Augment, JetBrains AI, Vertex AI, Mistral, Synthetic, Codebuff, Abacus AI, Perplexity, Amp, Ollama, Manus, MiMo, Doubao, Crof, CmdCode, StepFun |
-| **Balance** | DeepSeek, OpenRouter, Warp, Kilo, KimiK2, Moonshot, Venice, Bedrock |
+| **Usage Bar** | Claude, Codex, ZAI, Cursor, Gemini, Copilot, Windsurf, OpenCode, OC Go, Alibaba, Antigravity, Kiro, MiniMax, Kimi, Droid, Augment, JetBrains AI, Vertex AI, Mistral, Synthetic, Codebuff, Abacus AI, Perplexity, Amp, Ollama, Manus, MiMo, CmdCode, StepFun |
+| **Balance** | DeepSeek, OpenRouter, Warp, Kilo, KimiK2, OpenAI, Moonshot, Doubao, Crof, Venice, Bedrock |
 
 ## How It Works
 
@@ -75,16 +79,20 @@ The app periodically runs `codexbar usage --provider <name> --format json` and r
 
 # CodexBarMenuBar（中文）
 
-> ⚠️ **本应用需要先安装 [CodexBar CLI](https://github.com/steipete/CodexBar)。** 本应用**不直接调用任何 AI 提供商 API**，所有数据通过 CodexBar CLI 获取。没有 CodexBar CLI，本应用什么都不会显示。
+### ⚡ AI 用量一眼可见 — 直接显示在 macOS 顶部菜单栏
+
+**不用打开 CodexBar.app，不用点击，不用切换窗口。** 抬头看一眼菜单栏，立刻知道今天的 Claude、Codex、ZAI、DeepSeek 等 35+ 个 AI 用了多少。
+
+> ⚠️ **需要先安装 [CodexBar CLI](https://github.com/steipete/CodexBar)。** 本应用**不直接调用任何 AI 提供商 API**，所有数据通过 CodexBar CLI 获取。没有 CodexBar CLI，本应用什么都不会显示。
 
 ![菜单栏截图](screenshots/menubar.png)
 
-上图展示了菜单栏中的三个 AI 提供商：
+上图展示了菜单栏中并列显示的三个 AI 提供商：
 - **Claude**：绿色进度条 `19% W:2%`（会话和周用量）
 - **ZAI**：进度条 `0% W:1%`
 - **DeepSeek**：余额 `¥44.15`
 
-macOS 菜单栏扩展，实时可视化 AI 服务用量。
+AI 用量始终在你眼前，再也不用埋在别的窗口里。
 
 ## 版本号说明
 
@@ -130,8 +138,8 @@ open CodexBarMenuBar.xcodeproj
 
 | 类型 | Provider |
 |------|----------|
-| **用量进度条** | Claude, Codex, OpenAI, ZAI, Cursor, Gemini, Copilot, Windsurf, OpenCode, OC Go, Alibaba, Antigravity, Kiro, MiniMax, Kimi, Droid, Augment, JetBrains AI, Vertex AI, Mistral, Synthetic, Codebuff, Abacus AI, Perplexity, Amp, Ollama, Manus, MiMo, Doubao, Crof, CmdCode, StepFun |
-| **余额显示** | DeepSeek, OpenRouter, Warp, Kilo, KimiK2, Moonshot, Venice, Bedrock |
+| **用量进度条** | Claude, Codex, ZAI, Cursor, Gemini, Copilot, Windsurf, OpenCode, OC Go, Alibaba, Antigravity, Kiro, MiniMax, Kimi, Droid, Augment, JetBrains AI, Vertex AI, Mistral, Synthetic, Codebuff, Abacus AI, Perplexity, Amp, Ollama, Manus, MiMo, CmdCode, StepFun |
+| **余额显示** | DeepSeek, OpenRouter, Warp, Kilo, KimiK2, OpenAI, Moonshot, Doubao, Crof, Venice, Bedrock |
 
 ## 工作原理
 
