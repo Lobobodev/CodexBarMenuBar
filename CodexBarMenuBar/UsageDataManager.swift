@@ -217,10 +217,18 @@ final class UsageDataManager {
                 )
             }
 
+            let org = usage.accountOrganization ?? usage.identity?.accountOrganization
+
             if config.displayType == .balance {
                 let desc = window(for: config.balanceField ?? .primary)?.resetDescription
                 let balance = desc.map { extractBalance(from: $0) }
-                return ProviderUsage(balance: balance, lastUpdated: Date(), extraWindows: extras)
+                return ProviderUsage(
+                    balance: balance,
+                    lastUpdated: Date(),
+                    extraWindows: extras,
+                    accountOrganization: org,
+                    source: r.source
+                )
             } else {
                 let sessionWin = window(for: config.sessionField)
                 let weeklyWin = config.weeklyField.flatMap { window(for: $0) }
@@ -232,7 +240,9 @@ final class UsageDataManager {
                     lastUpdated: Date(),
                     sessionResetsAt: sessionWin?.resetsAt.flatMap { Self.iso8601.date(from: $0) },
                     weeklyResetsAt: weeklyWin?.resetsAt.flatMap { Self.iso8601.date(from: $0) },
-                    extraWindows: extras
+                    extraWindows: extras,
+                    accountOrganization: org,
+                    source: r.source
                 )
             }
 

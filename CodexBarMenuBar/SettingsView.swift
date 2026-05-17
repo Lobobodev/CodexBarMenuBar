@@ -641,11 +641,29 @@ struct ProviderDetailView: View {
                     .frame(width: 80, alignment: .leading)
                 Text(config.displayType == .usageBar ? "Subscription (Usage)" : "Balance (Credit)")
             }
-            if let usage = dataManager.usages[config.id], let date = usage.lastUpdated {
-                GridRow {
-                    Text("Updated")
-                        .frame(width: 80, alignment: .leading)
-                    Text("\(date, style: .relative) ago")
+            if let usage = dataManager.usages[config.id] {
+                if let org = usage.accountOrganization {
+                    GridRow {
+                        Text("Account")
+                            .frame(width: 80, alignment: .leading)
+                        Text(org)
+                            .lineLimit(1)
+                            .truncationMode(.tail)
+                    }
+                }
+                if let source = usage.source {
+                    GridRow {
+                        Text("Source")
+                            .frame(width: 80, alignment: .leading)
+                        Text(source)
+                    }
+                }
+                if let date = usage.lastUpdated {
+                    GridRow {
+                        Text("Updated")
+                            .frame(width: 80, alignment: .leading)
+                        Text("\(date, style: .relative) ago")
+                    }
                 }
             }
         }

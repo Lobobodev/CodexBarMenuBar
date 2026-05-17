@@ -88,6 +88,28 @@ extension ProviderConfig {
         // Local (no billing)
         ProviderConfig(id: "ollama", displayName: "Ollama", cliName: "ollama", displayType: .usageBar,
                        sessionField: .primary, weeklyField: .secondary, balanceField: nil),
+
+        // New in CodexBar CLI v0.26+
+        ProviderConfig(id: "openai", displayName: "OpenAI", cliName: "openai", displayType: .usageBar,
+                       sessionField: .primary, weeklyField: .secondary, balanceField: nil),
+        ProviderConfig(id: "manus", displayName: "Manus", cliName: "manus", displayType: .usageBar,
+                       sessionField: .primary, weeklyField: .secondary, balanceField: nil),
+        ProviderConfig(id: "moonshot", displayName: "Moonshot", cliName: "moonshot", displayType: .balance,
+                       sessionField: .primary, weeklyField: nil, balanceField: .primary),
+        ProviderConfig(id: "mimo", displayName: "MiMo", cliName: "mimo", displayType: .usageBar,
+                       sessionField: .primary, weeklyField: .secondary, balanceField: nil),
+        ProviderConfig(id: "doubao", displayName: "Doubao", cliName: "doubao", displayType: .usageBar,
+                       sessionField: .primary, weeklyField: .secondary, balanceField: nil),
+        ProviderConfig(id: "crof", displayName: "Crof", cliName: "crof", displayType: .usageBar,
+                       sessionField: .primary, weeklyField: .secondary, balanceField: nil),
+        ProviderConfig(id: "venice", displayName: "Venice", cliName: "venice", displayType: .balance,
+                       sessionField: .primary, weeklyField: nil, balanceField: .primary),
+        ProviderConfig(id: "commandcode", displayName: "CmdCode", cliName: "commandcode", displayType: .usageBar,
+                       sessionField: .primary, weeklyField: .secondary, balanceField: nil),
+        ProviderConfig(id: "stepfun", displayName: "StepFun", cliName: "stepfun", displayType: .usageBar,
+                       sessionField: .primary, weeklyField: .secondary, balanceField: nil),
+        ProviderConfig(id: "bedrock", displayName: "Bedrock", cliName: "bedrock", displayType: .balance,
+                       sessionField: .primary, weeklyField: nil, balanceField: .primary),
     ]
 
     static let defaultEnabledIDs: Set<String> = ["claude", "zai", "deepseek"]
@@ -103,6 +125,8 @@ struct CodexBarResponse: Decodable {
     let provider: String
     let usage: UsageData?
     let error: CodexBarError?
+    let version: String?
+    let source: String?
 }
 
 struct CodexBarError: Decodable {
@@ -116,9 +140,18 @@ struct UsageData: Decodable {
     let secondary: RateWindow?
     let tertiary: RateWindow?
     let accountEmail: String?
+    let accountOrganization: String?
     let loginMethod: String?
     let updatedAt: String?
     let extraRateWindows: [NamedRateWindow]?
+    let identity: AccountIdentity?
+}
+
+struct AccountIdentity: Decodable {
+    let providerID: String?
+    let accountEmail: String?
+    let accountOrganization: String?
+    let loginMethod: String?
 }
 
 struct RateWindow: Decodable {
@@ -188,6 +221,8 @@ struct ProviderUsage {
     var sessionResetsAt: Date?
     var weeklyResetsAt: Date?
     var extraWindows: [ExtraWindowUsage] = []
+    var accountOrganization: String?
+    var source: String?
 
     static let empty = ProviderUsage()
 }
