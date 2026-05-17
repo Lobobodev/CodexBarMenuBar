@@ -67,15 +67,20 @@ jobs:
             - **macOS**: 15.0+
 
             ## Installation
-            1. Download `CodexBarMenuBar-v${{ steps.version.outputs.VERSION }}.zip` below
-            2. Unzip and drag `CodexBarMenuBar.app` to `/Applications`
-            3. **First launch**: right-click the app → Open (Gatekeeper warning, since the app is unsigned)
 
-            ## Prerequisites
-            Install CodexBar CLI first:
+            ### Homebrew (recommended)
             ```bash
-            brew install --cask codexbar
+            brew install --cask Lobobodev/tap/codexbarmenubar
             ```
+
+            ### Direct download
+            ```bash
+            curl -L -o CodexBarMenuBar.zip https://github.com/Lobobodev/CodexBarMenuBar/releases/download/v${{ steps.version.outputs.VERSION }}/CodexBarMenuBar-v${{ steps.version.outputs.VERSION }}.zip
+            unzip CodexBarMenuBar.zip -d /Applications/
+            open /Applications/CodexBarMenuBar.app
+            ```
+
+            Or manually: download `CodexBarMenuBar-v${{ steps.version.outputs.VERSION }}.zip` from the assets, unzip, drag to `/Applications`. App is signed and notarized, double-click to open with no warnings.
 
             ---
 
@@ -84,15 +89,20 @@ jobs:
             - **macOS**: 15.0+
 
             ## 安装
-            1. 下载下方的 `CodexBarMenuBar-v${{ steps.version.outputs.VERSION }}.zip`
-            2. 解压后将 `CodexBarMenuBar.app` 拖入 `/Applications`
-            3. **首次启动**：右键点击 app → 打开（因未签名，会有 Gatekeeper 警告）
 
-            ## 前置条件
-            先安装 CodexBar CLI：
+            ### Homebrew（推荐）
             ```bash
-            brew install --cask codexbar
+            brew install --cask Lobobodev/tap/codexbarmenubar
             ```
+
+            ### 直接下载
+            ```bash
+            curl -L -o CodexBarMenuBar.zip https://github.com/Lobobodev/CodexBarMenuBar/releases/download/v${{ steps.version.outputs.VERSION }}/CodexBarMenuBar-v${{ steps.version.outputs.VERSION }}.zip
+            unzip CodexBarMenuBar.zip -d /Applications/
+            open /Applications/CodexBarMenuBar.app
+            ```
+
+            或手动下载下方的 zip 文件，解压拖到 `/Applications`。应用已签名 + 公证，双击直接打开无警告。
           files: |
             build/CodexBarMenuBar-v${{ steps.version.outputs.VERSION }}.zip
             build/CodexBarMenuBar-v${{ steps.version.outputs.VERSION }}.zip.sha256

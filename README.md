@@ -12,6 +12,7 @@
 [![Downloads](https://img.shields.io/github/downloads/Lobobodev/CodexBarMenuBar/total?label=downloads&color=brightgreen)](https://github.com/Lobobodev/CodexBarMenuBar/releases)
 [![macOS](https://img.shields.io/badge/macOS-15%2B-blue)](https://www.apple.com/macos)
 [![Swift](https://img.shields.io/badge/Swift-6.0-orange)](https://swift.org)
+[![brew](https://img.shields.io/badge/brew-Lobobodev%2Ftap%2Fcodexbarmenubar-orange)](https://github.com/Lobobodev/homebrew-tap)
 [![Signed](https://img.shields.io/badge/signed-Developer%20ID%20%2B%20Notarized-success)](https://developer.apple.com/documentation/security/notarizing-macos-software-before-distribution)
 [![License](https://img.shields.io/badge/license-MIT-purple)](LICENSE)
 
@@ -66,11 +67,25 @@ Drag-to-reorder providers, toggle each metric independently (Bar, %, ⏱ Bar, �
 
 ## Installation
 
-1. Download `CodexBarMenuBar.zip` from [Releases](../../releases) (match the version with your installed CodexBar CLI)
-2. Unzip and drag `CodexBarMenuBar.app` to `/Applications`
-3. Launch the app — it appears in the menu bar, no Dock icon
+### Option A: Homebrew (recommended)
+```bash
+brew install --cask Lobobodev/tap/codexbarmenubar
+```
+Automatically installs CodexBar CLI too. Upgrade with `brew upgrade --cask codexbarmenubar`.
 
-Or build from source:
+### Option B: Direct download via curl
+```bash
+curl -L -o CodexBarMenuBar.zip https://github.com/Lobobodev/CodexBarMenuBar/releases/latest/download/CodexBarMenuBar-v0.26.1.zip
+unzip CodexBarMenuBar.zip -d /Applications/
+open /Applications/CodexBarMenuBar.app
+```
+
+### Option C: Manual download
+1. Download `CodexBarMenuBar-v0.26.1.zip` from [Releases](../../releases)
+2. Unzip and drag `CodexBarMenuBar.app` to `/Applications`
+3. Double-click — no Gatekeeper warnings (app is signed & notarized by Apple)
+
+### Build from source
 ```bash
 git clone https://github.com/Lobobodev/CodexBarMenuBar.git
 cd CodexBarMenuBar
@@ -108,6 +123,7 @@ The app periodically runs `codexbar usage --provider <name> --format json` and r
 [![Downloads](https://img.shields.io/github/downloads/Lobobodev/CodexBarMenuBar/total?label=下载量&color=brightgreen)](https://github.com/Lobobodev/CodexBarMenuBar/releases)
 [![macOS](https://img.shields.io/badge/macOS-15%2B-blue)](https://www.apple.com/macos)
 [![Swift](https://img.shields.io/badge/Swift-6.0-orange)](https://swift.org)
+[![brew](https://img.shields.io/badge/brew-Lobobodev%2Ftap%2Fcodexbarmenubar-orange)](https://github.com/Lobobodev/homebrew-tap)
 [![Signed](https://img.shields.io/badge/%E7%AD%BE%E5%90%8D-Developer%20ID%20%2B%20%E5%85%AC%E8%AF%81-success)](https://developer.apple.com/documentation/security/notarizing-macos-software-before-distribution)
 [![License](https://img.shields.io/badge/%E8%AE%B8%E5%8F%AF%E8%AF%81-MIT-purple)](LICENSE)
 
@@ -162,11 +178,25 @@ AI 用量始终在你眼前，再也不用埋在别的窗口里。
 
 ## 安装
 
-1. 从 [Releases](../../releases) 下载 `CodexBarMenuBar.zip`（版本号需要与已安装的 CodexBar CLI 一致）
-2. 解压后将 `CodexBarMenuBar.app` 拖入 `/Applications`
-3. 启动应用 — 直接出现在菜单栏，无 Dock 图标
+### 方式 A：Homebrew（推荐）
+```bash
+brew install --cask Lobobodev/tap/codexbarmenubar
+```
+会自动一起装 CodexBar CLI。升级用 `brew upgrade --cask codexbarmenubar`。
 
-或从源码构建：
+### 方式 B：curl 直接下载
+```bash
+curl -L -o CodexBarMenuBar.zip https://github.com/Lobobodev/CodexBarMenuBar/releases/latest/download/CodexBarMenuBar-v0.26.1.zip
+unzip CodexBarMenuBar.zip -d /Applications/
+open /Applications/CodexBarMenuBar.app
+```
+
+### 方式 C：手动下载
+1. 从 [Releases](../../releases) 下载 `CodexBarMenuBar-v0.26.1.zip`
+2. 解压后将 `CodexBarMenuBar.app` 拖入 `/Applications`
+3. 双击启动 — 无 Gatekeeper 警告（应用已签名 + Apple 公证）
+
+### 从源码构建
 ```bash
 git clone https://github.com/Lobobodev/CodexBarMenuBar.git
 cd CodexBarMenuBar
