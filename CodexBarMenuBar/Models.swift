@@ -110,6 +110,18 @@ extension ProviderConfig {
                        sessionField: .primary, weeklyField: .secondary, balanceField: nil),
         ProviderConfig(id: "bedrock", displayName: "Bedrock", cliName: "bedrock", displayType: .balance,
                        sessionField: .primary, weeklyField: nil, balanceField: .primary),
+
+        // New in CodexBar CLI v0.27+
+        ProviderConfig(id: "elevenlabs", displayName: "11Labs", cliName: "elevenlabs", displayType: .usageBar,
+                       sessionField: .primary, weeklyField: .secondary, balanceField: nil),
+        ProviderConfig(id: "grok", displayName: "Grok", cliName: "grok", displayType: .balance,
+                       sessionField: .primary, weeklyField: nil, balanceField: .primary),
+        ProviderConfig(id: "groqcloud", displayName: "Groq", cliName: "groqcloud", displayType: .usageBar,
+                       sessionField: .primary, weeklyField: .secondary, balanceField: nil),
+        ProviderConfig(id: "llmproxy", displayName: "LLMProxy", cliName: "llmproxy", displayType: .usageBar,
+                       sessionField: .primary, weeklyField: .secondary, balanceField: nil),
+        ProviderConfig(id: "deepgram", displayName: "Deepgram", cliName: "deepgram", displayType: .usageBar,
+                       sessionField: .primary, weeklyField: .secondary, balanceField: nil),
     ]
 
     static let defaultEnabledIDs: Set<String> = ["claude", "zai", "deepseek"]

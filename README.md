@@ -59,12 +59,12 @@ If you're satisfied with CodexBar's built-in merged mode, **you don't need this 
 
 ## Versioning
 
-**This app's version tracks [CodexBar CLI](https://github.com/steipete/CodexBar) version.** For example, CodexBarMenuBar `0.26.1` matches CodexBar CLI `0.26.1`. Always install the matching version of both.
+**This app's version tracks [CodexBar CLI](https://github.com/steipete/CodexBar) version.** For example, CodexBarMenuBar `0.27.0` matches CodexBar CLI `0.27.0`. Always install the matching version of both.
 
 ## Features
 
 - **Real-time usage bars** with color-coded progress (green -> yellow -> orange -> red)
-- **40 AI providers** supported: Claude, Cursor, Gemini, Copilot, Windsurf, ZAI, DeepSeek, OpenAI, Bedrock, and many more
+- **45 AI providers** supported: Claude, Cursor, Gemini, Copilot, Windsurf, ZAI, DeepSeek, OpenAI, Grok, Bedrock, ElevenLabs, Deepgram, and many more
 - **Per-window metrics**: session usage, weekly usage, and provider-specific extra windows (e.g., Claude Designs, Daily Routines)
 - **Countdown timers**: optional countdown bar and text for reset times
 - **Balance display**: credit-based providers show remaining balance (e.g., DeepSeek `¥44.15`)
@@ -93,13 +93,13 @@ Automatically installs CodexBar CLI too. Upgrade with `brew upgrade --cask codex
 
 ### Option B: Direct download via curl
 ```bash
-curl -L -o CodexBarMenuBar.zip https://github.com/Lobobodev/CodexBarMenuBar/releases/latest/download/CodexBarMenuBar-v0.26.1.zip
+curl -L -o CodexBarMenuBar.zip https://github.com/Lobobodev/CodexBarMenuBar/releases/latest/download/CodexBarMenuBar-v0.27.0.zip
 unzip CodexBarMenuBar.zip -d /Applications/
 open /Applications/CodexBarMenuBar.app
 ```
 
 ### Option C: Manual download
-1. Download `CodexBarMenuBar-v0.26.1.zip` from [Releases](../../releases)
+1. Download `CodexBarMenuBar-v0.27.0.zip` from [Releases](../../releases)
 2. Unzip and drag `CodexBarMenuBar.app` to `/Applications`
 3. Double-click — no Gatekeeper warnings (app is signed & notarized by Apple)
 
@@ -111,12 +111,12 @@ open CodexBarMenuBar.xcodeproj
 ```
 Then build and run with `Cmd+R` in Xcode.
 
-## Supported Providers (matches CodexBar CLI 0.26+)
+## Supported Providers (matches CodexBar CLI 0.27+)
 
 | Type | Providers |
 |------|-----------|
-| **Usage Bar** | Claude, Codex, ZAI, Cursor, Gemini, Copilot, Windsurf, OpenCode, OC Go, Alibaba, Antigravity, Kiro, MiniMax, Kimi, Droid, Augment, JetBrains AI, Vertex AI, Mistral, Synthetic, Codebuff, Abacus AI, Perplexity, Amp, Ollama, Manus, MiMo, CmdCode, StepFun |
-| **Balance** | DeepSeek, OpenRouter, Warp, Kilo, KimiK2, OpenAI, Moonshot, Doubao, Crof, Venice, Bedrock |
+| **Usage Bar** | Claude, Codex, ZAI, Cursor, Gemini, Copilot, Windsurf, OpenCode, OC Go, Alibaba, Antigravity, Kiro, MiniMax, Kimi, Droid, Augment, JetBrains AI, Vertex AI, Mistral, Synthetic, Codebuff, Abacus AI, Perplexity, Amp, Ollama, Manus, MiMo, CmdCode, StepFun, ElevenLabs, Groq, LLM Proxy, Deepgram |
+| **Balance** | DeepSeek, OpenRouter, Warp, Kilo, KimiK2, OpenAI, Moonshot, Doubao, Crof, Venice, Bedrock, Grok |
 
 ## How It Works
 
@@ -188,12 +188,12 @@ AI 用量始终在你眼前，再也不用埋在别的窗口里。
 
 ## 版本号说明
 
-**本应用的版本号跟随 [CodexBar CLI](https://github.com/steipete/CodexBar) 版本。** 例如 CodexBarMenuBar `0.26.1` 对应 CodexBar CLI `0.26.1`。请始终安装版本相匹配的两个程序。
+**本应用的版本号跟随 [CodexBar CLI](https://github.com/steipete/CodexBar) 版本。** 例如 CodexBarMenuBar `0.27.0` 对应 CodexBar CLI `0.27.0`。请始终安装版本相匹配的两个程序。
 
 ## 功能
 
 - **实时用量进度条**，颜色随用量变化（绿 -> 黄 -> 橙 -> 红）
-- **支持 40 个 AI 提供商**：Claude、Cursor、Gemini、Copilot、Windsurf、ZAI、DeepSeek、OpenAI、Bedrock 等
+- **支持 45 个 AI 提供商**：Claude、Cursor、Gemini、Copilot、Windsurf、ZAI、DeepSeek、OpenAI、Grok、Bedrock、ElevenLabs、Deepgram 等
 - **多维度指标**：会话用量、周用量，以及提供商特有窗口（如 Claude 的 Designs、Daily Routines）
 - **倒计时显示**：可选的倒计时进度条和文字，显示重置时间
 - **余额显示**：按量付费的提供商直接显示余额（如 DeepSeek `¥44.15`）
@@ -222,13 +222,13 @@ brew install --cask Lobobodev/tap/codexbarmenubar
 
 ### 方式 B：curl 直接下载
 ```bash
-curl -L -o CodexBarMenuBar.zip https://github.com/Lobobodev/CodexBarMenuBar/releases/latest/download/CodexBarMenuBar-v0.26.1.zip
+curl -L -o CodexBarMenuBar.zip https://github.com/Lobobodev/CodexBarMenuBar/releases/latest/download/CodexBarMenuBar-v0.27.0.zip
 unzip CodexBarMenuBar.zip -d /Applications/
 open /Applications/CodexBarMenuBar.app
 ```
 
 ### 方式 C：手动下载
-1. 从 [Releases](../../releases) 下载 `CodexBarMenuBar-v0.26.1.zip`
+1. 从 [Releases](../../releases) 下载 `CodexBarMenuBar-v0.27.0.zip`
 2. 解压后将 `CodexBarMenuBar.app` 拖入 `/Applications`
 3. 双击启动 — 无 Gatekeeper 警告（应用已签名 + Apple 公证）
 
@@ -240,12 +240,12 @@ open CodexBarMenuBar.xcodeproj
 ```
 在 Xcode 中 `Cmd+R` 运行。
 
-## 支持的 Provider（对应 CodexBar CLI 0.26+）
+## 支持的 Provider（对应 CodexBar CLI 0.27+）
 
 | 类型 | Provider |
 |------|----------|
-| **用量进度条** | Claude, Codex, ZAI, Cursor, Gemini, Copilot, Windsurf, OpenCode, OC Go, Alibaba, Antigravity, Kiro, MiniMax, Kimi, Droid, Augment, JetBrains AI, Vertex AI, Mistral, Synthetic, Codebuff, Abacus AI, Perplexity, Amp, Ollama, Manus, MiMo, CmdCode, StepFun |
-| **余额显示** | DeepSeek, OpenRouter, Warp, Kilo, KimiK2, OpenAI, Moonshot, Doubao, Crof, Venice, Bedrock |
+| **用量进度条** | Claude, Codex, ZAI, Cursor, Gemini, Copilot, Windsurf, OpenCode, OC Go, Alibaba, Antigravity, Kiro, MiniMax, Kimi, Droid, Augment, JetBrains AI, Vertex AI, Mistral, Synthetic, Codebuff, Abacus AI, Perplexity, Amp, Ollama, Manus, MiMo, CmdCode, StepFun, ElevenLabs, Groq, LLM Proxy, Deepgram |
+| **余额显示** | DeepSeek, OpenRouter, Warp, Kilo, KimiK2, OpenAI, Moonshot, Doubao, Crof, Venice, Bedrock, Grok |
 
 ## 工作原理
 

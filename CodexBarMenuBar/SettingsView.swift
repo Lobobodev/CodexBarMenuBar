@@ -871,7 +871,7 @@ struct AboutSettingsView: View {
                 Text("CodexBarMenuBar")
                     .font(.title3)
                     .bold()
-                Text("Version 0.26.1")
+                Text("Version 0.27.0")
                     .foregroundStyle(.secondary)
                 Text("Tracks CodexBar CLI version")
                     .font(.caption2)
