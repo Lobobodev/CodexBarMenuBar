@@ -122,6 +122,12 @@ extension ProviderConfig {
                        sessionField: .primary, weeklyField: .secondary, balanceField: nil),
         ProviderConfig(id: "deepgram", displayName: "Deepgram", cliName: "deepgram", displayType: .usageBar,
                        sessionField: .primary, weeklyField: .secondary, balanceField: nil),
+
+        // New in CodexBar CLI v0.28+
+        ProviderConfig(id: "azureopenai", displayName: "Azure", cliName: "azure-openai", displayType: .usageBar,
+                       sessionField: .primary, weeklyField: .secondary, balanceField: nil),
+        ProviderConfig(id: "t3chat", displayName: "T3 Chat", cliName: "t3chat", displayType: .usageBar,
+                       sessionField: .primary, weeklyField: .secondary, balanceField: nil),
     ]
 
     static let defaultEnabledIDs: Set<String> = ["claude", "zai", "deepseek"]
