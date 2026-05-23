@@ -39,12 +39,12 @@ enum SettingsTab: String, CaseIterable {
 // MARK: - Reusable: SettingsSection
 
 struct SettingsSection<Content: View>: View {
-    let title: String?
-    let caption: String?
+    let title: LocalizedStringKey?
+    let caption: LocalizedStringKey?
     let contentSpacing: CGFloat
     @ViewBuilder let content: () -> Content
 
-    init(title: String? = nil, caption: String? = nil, spacing: CGFloat = 14, @ViewBuilder content: @escaping () -> Content) {
+    init(title: LocalizedStringKey? = nil, caption: LocalizedStringKey? = nil, spacing: CGFloat = 14, @ViewBuilder content: @escaping () -> Content) {
         self.title = title
         self.caption = caption
         self.contentSpacing = spacing
@@ -72,11 +72,11 @@ struct SettingsSection<Content: View>: View {
 // MARK: - Reusable: PreferenceToggleRow
 
 struct PreferenceToggleRow: View {
-    let title: String
-    let subtitle: String?
+    let title: LocalizedStringKey
+    let subtitle: LocalizedStringKey?
     @Binding var isOn: Bool
 
-    init(_ title: String, subtitle: String? = nil, isOn: Binding<Bool>) {
+    init(_ title: LocalizedStringKey, subtitle: LocalizedStringKey? = nil, isOn: Binding<Bool>) {
         self.title = title
         self.subtitle = subtitle
         self._isOn = isOn
@@ -89,7 +89,7 @@ struct PreferenceToggleRow: View {
             }
             .toggleStyle(.checkbox)
 
-            if let subtitle, !subtitle.isEmpty {
+            if let subtitle {
                 Text(subtitle)
                     .font(.footnote)
                     .foregroundStyle(.tertiary)
@@ -102,13 +102,13 @@ struct PreferenceToggleRow: View {
 // MARK: - Reusable: ProviderSettingsSection
 
 struct ProviderSettingsSection<Content: View>: View {
-    let title: String
+    let title: LocalizedStringKey
     let spacing: CGFloat
     let verticalPadding: CGFloat
     let horizontalPadding: CGFloat
     @ViewBuilder let content: () -> Content
 
-    init(title: String, spacing: CGFloat = 12, verticalPadding: CGFloat = 10, horizontalPadding: CGFloat = 4, @ViewBuilder content: @escaping () -> Content) {
+    init(title: LocalizedStringKey, spacing: CGFloat = 12, verticalPadding: CGFloat = 10, horizontalPadding: CGFloat = 4, @ViewBuilder content: @escaping () -> Content) {
         self.title = title
         self.spacing = spacing
         self.verticalPadding = verticalPadding
@@ -201,6 +201,13 @@ struct GeneralSettingsView: View {
     @AppStorage("resetTimeAsAbsolute") private var resetTimeAsAbsolute = false
     @AppStorage("colorPercentText") private var colorPercentText = false
     @AppStorage("colorCountdownText") private var colorCountdownText = false
+    @AppStorage("quotaNotifEnabled") private var quotaNotifEnabled = false
+    @AppStorage("quotaNotifWarningThreshold") private var quotaNotifWarningThreshold: Double = 80
+    @AppStorage("quotaNotifCriticalThreshold") private var quotaNotifCriticalThreshold: Double = 95
+    @AppStorage("showThresholdTicks") private var showThresholdTicks = false
+    @AppStorage("batterySaverEnabled") private var batterySaverEnabled = false
+    @AppStorage("showWorkdayMarkers") private var showWorkdayMarkers = false
+    @AppStorage("appLanguage") private var appLanguage: String = "system"
 
     var body: some View {
         ScrollView(.vertical, showsIndicators: true) {
@@ -213,6 +220,36 @@ struct GeneralSettingsView: View {
                     )
                     .onChange(of: launchAtLogin) {
                         LaunchAtLoginHelper.setEnabled(launchAtLogin)
+                    }
+                }
+
+                Divider()
+
+                SettingsSection(title: "Language") {
+                    VStack(alignment: .leading, spacing: 6) {
+                        HStack(alignment: .firstTextBaseline, spacing: 10) {
+                            Text("Language")
+                                .font(.subheadline.weight(.semibold))
+
+                            Picker("", selection: $appLanguage) {
+                                Text("Follow System").tag("system")
+                                Text("English").tag("en")
+                                Text("简体中文").tag("zh-Hans")
+                            }
+                            .labelsHidden()
+                            .pickerStyle(.menu)
+                            .frame(maxWidth: 200)
+                            .controlSize(.small)
+                            .onChange(of: appLanguage) {
+                                applyLanguageChoice(appLanguage)
+                            }
+
+                            Spacer(minLength: 0)
+                        }
+
+                        Text("Change the display language. Requires app restart to take full effect.")
+                            .font(.footnote)
+                            .foregroundStyle(.tertiary)
                     }
                 }
 
@@ -281,6 +318,66 @@ struct GeneralSettingsView: View {
                         subtitle: "Tint the countdown text by time remaining (orange when a lot of time is left, green near reset).",
                         isOn: $colorCountdownText
                     )
+
+                    PreferenceToggleRow(
+                        "Show threshold ticks on bars",
+                        subtitle: "Draw a small line at the warning and critical thresholds on each usage bar.",
+                        isOn: $showThresholdTicks
+                    )
+
+                    PreferenceToggleRow(
+                        "Show workday markers on weekly bars",
+                        subtitle: "Add subtle vertical marks on weekly usage bars to show day boundaries.",
+                        isOn: $showWorkdayMarkers
+                    )
+                }
+
+                Divider()
+
+                SettingsSection(title: "Notifications") {
+                    PreferenceToggleRow(
+                        "Quota warning notifications",
+                        subtitle: "Post a macOS notification when a provider's usage crosses the warning or critical threshold.",
+                        isOn: $quotaNotifEnabled
+                    )
+
+                    if quotaNotifEnabled {
+                        VStack(alignment: .leading, spacing: 6) {
+                            HStack(alignment: .firstTextBaseline, spacing: 10) {
+                                Text("Warning at")
+                                    .font(.subheadline.weight(.semibold))
+                                    .frame(width: 100, alignment: .leading)
+                                Slider(value: $quotaNotifWarningThreshold, in: 50...95, step: 5)
+                                    .frame(maxWidth: 200)
+                                Text("\(Int(quotaNotifWarningThreshold))%")
+                                    .monospacedDigit()
+                                    .frame(width: 40, alignment: .trailing)
+                            }
+                            HStack(alignment: .firstTextBaseline, spacing: 10) {
+                                Text("Critical at")
+                                    .font(.subheadline.weight(.semibold))
+                                    .frame(width: 100, alignment: .leading)
+                                Slider(value: $quotaNotifCriticalThreshold, in: 80...99, step: 1)
+                                    .frame(maxWidth: 200)
+                                Text("\(Int(quotaNotifCriticalThreshold))%")
+                                    .monospacedDigit()
+                                    .frame(width: 40, alignment: .trailing)
+                            }
+                            Text("Each threshold fires once per window until usage drops below it again.")
+                                .font(.footnote)
+                                .foregroundStyle(.tertiary)
+                        }
+                    }
+                }
+
+                Divider()
+
+                SettingsSection(title: "Battery") {
+                    PreferenceToggleRow(
+                        "Battery saver",
+                        subtitle: "Skip background refreshes when running on battery power. Manual refresh still works.",
+                        isOn: $batterySaverEnabled
+                    )
                 }
 
                 Divider()
@@ -296,6 +393,30 @@ struct GeneralSettingsView: View {
             }
             .padding(.horizontal, 20)
             .padding(.vertical, 12)
+        }
+    }
+
+    /// Apply the user's language choice by writing AppleLanguages override
+    /// into UserDefaults. Takes effect on next launch.
+    private func applyLanguageChoice(_ code: String) {
+        switch code {
+        case "system":
+            UserDefaults.standard.removeObject(forKey: "AppleLanguages")
+        default:
+            UserDefaults.standard.set([code], forKey: "AppleLanguages")
+        }
+        // Notify the user a restart is needed.
+        let alert = NSAlert()
+        alert.messageText = String(localized: "Restart Required")
+        alert.informativeText = String(localized: "The language change takes effect after restarting CodexBarMenuBar.")
+        alert.addButton(withTitle: String(localized: "Restart Now"))
+        alert.addButton(withTitle: String(localized: "Later"))
+        if alert.runModal() == .alertFirstButtonReturn {
+            let task = Process()
+            task.launchPath = "/usr/bin/open"
+            task.arguments = ["-n", Bundle.main.bundlePath]
+            try? task.run()
+            NSApp.terminate(nil)
         }
     }
 }
@@ -458,8 +579,8 @@ struct ProviderSidebarRowView: View {
     }
 
     private var statusText: String {
-        guard isEnabled else { return "Disabled" }
-        guard let usage = dataManager.usages[config.id] else { return "No data" }
+        guard isEnabled else { return String(localized: "Disabled") }
+        guard let usage = dataManager.usages[config.id] else { return String(localized: "No data") }
         if let err = usage.error { return err }
         if let s = usage.sessionPercent {
             if let w = usage.weeklyPercent {
@@ -691,10 +812,10 @@ struct ProviderDetailView: View {
     private func currentUsageSection(_ usage: ProviderUsage) -> some View {
         ProviderSettingsSection(title: "Usage & Menu Bar Display", spacing: 10, verticalPadding: 6, horizontalPadding: 0) {
             if let s = usage.sessionPercent {
-                usageMetricRow(windowKey: "session", label: "Session", percent: s, resetsAt: usage.sessionResetsAt)
+                usageMetricRow(windowKey: "session", label: String(localized: "Session"), percent: s, resetsAt: usage.sessionResetsAt)
             }
             if let w = usage.weeklyPercent {
-                usageMetricRow(windowKey: "weekly", label: "Weekly", percent: w, resetsAt: usage.weeklyResetsAt)
+                usageMetricRow(windowKey: "weekly", label: String(localized: "Weekly"), percent: w, resetsAt: usage.weeklyResetsAt)
             }
             ForEach(usage.extraWindows, id: \.id) { extra in
                 usageMetricRow(windowKey: extra.id, label: extra.title, percent: extra.usedPercent, resetsAt: extra.resetsAt)
@@ -871,7 +992,7 @@ struct AboutSettingsView: View {
                 Text("CodexBarMenuBar")
                     .font(.title3)
                     .bold()
-                Text("Version 0.28.0")
+                Text("Version 0.29.0")
                     .foregroundStyle(.secondary)
                 Text("Tracks CodexBar CLI version")
                     .font(.caption2)
@@ -926,7 +1047,7 @@ struct AboutSettingsView: View {
 
 struct AboutLinkRow: View {
     let icon: String
-    let title: String
+    let title: LocalizedStringKey
     let url: String
     @State private var hovering = false
 

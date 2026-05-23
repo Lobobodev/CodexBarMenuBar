@@ -30,6 +30,10 @@ enum StatusItemRenderer {
         let resetTimeAbsolute = UserDefaults.standard.bool(forKey: "resetTimeAsAbsolute")
         let colorPercentText = UserDefaults.standard.bool(forKey: "colorPercentText")
         let colorCountdownText = UserDefaults.standard.bool(forKey: "colorCountdownText")
+        let showThresholdTicks = UserDefaults.standard.bool(forKey: "showThresholdTicks")
+        let showWorkdayMarkers = UserDefaults.standard.bool(forKey: "showWorkdayMarkers")
+        let warnThresh = (UserDefaults.standard.object(forKey: "quotaNotifWarningThreshold") as? Double) ?? 80
+        let critThresh = (UserDefaults.standard.object(forKey: "quotaNotifCriticalThreshold") as? Double) ?? 95
 
         let totalHeight: CGFloat = 22
         let barWidth: CGFloat = 40
@@ -65,7 +69,7 @@ enum StatusItemRenderer {
                     guard hasAny else { continue }
 
                     if ws.showBar {
-                        segments.append(.init(.bar(rw.usedPercent), barWidth))
+                        segments.append(.init(.bar(rw.usedPercent, rw.key), barWidth))
                         segments.append(.init(.spacer, 2))
                     }
                     if ws.showPercent {
@@ -139,7 +143,7 @@ enum StatusItemRenderer {
                         iconRect.fill(using: .sourceAtop)
                     }
 
-                case .bar(let percent):
+                case .bar(let percent, let windowKey):
                     let barRect = NSRect(x: x, y: barY, width: barWidth, height: barHeight)
                     NSColor.systemGray.withAlphaComponent(0.3).setFill()
                     NSBezierPath(roundedRect: barRect, xRadius: 3, yRadius: 3).fill()
@@ -151,6 +155,24 @@ enum StatusItemRenderer {
                             let fillRect = NSRect(x: x, y: barY, width: fillW, height: barHeight)
                             colorForPercent(percent).setFill()
                             NSBezierPath(roundedRect: fillRect, xRadius: 3, yRadius: 3).fill()
+                        }
+                    }
+
+                    // Threshold tick marks (warning + critical)
+                    if showThresholdTicks {
+                        NSColor.labelColor.withAlphaComponent(0.55).setFill()
+                        for t in [warnThresh, critThresh] {
+                            let tx = x + barWidth * CGFloat(t) / 100.0
+                            NSRect(x: tx - 0.5, y: barY - 1, width: 1, height: barHeight + 2).fill()
+                        }
+                    }
+
+                    // Workday markers for weekly bars (6 vertical ticks dividing the week)
+                    if showWorkdayMarkers && windowKey == "weekly" {
+                        NSColor.labelColor.withAlphaComponent(0.25).setFill()
+                        for i in 1..<7 {
+                            let tx = x + barWidth * CGFloat(i) / 7.0
+                            NSRect(x: tx - 0.5, y: barY + 1, width: 1, height: barHeight - 2).fill()
                         }
                     }
 
@@ -240,7 +262,7 @@ enum StatusItemRenderer {
     private enum SegmentKind {
         case text(String, NSColor)
         case icon(String)
-        case bar(Double)
+        case bar(Double, String)  // percent, windowKey ("session"/"weekly"/extra id)
         case countdownBar(Double)
         case divider
         case spacer

@@ -128,6 +128,10 @@ extension ProviderConfig {
                        sessionField: .primary, weeklyField: .secondary, balanceField: nil),
         ProviderConfig(id: "t3chat", displayName: "T3 Chat", cliName: "t3chat", displayType: .usageBar,
                        sessionField: .primary, weeklyField: .secondary, balanceField: nil),
+
+        // New in CodexBar CLI v0.29+
+        ProviderConfig(id: "alibabatokenplan", displayName: "Bailian", cliName: "alibaba-token-plan", displayType: .usageBar,
+                       sessionField: .primary, weeklyField: .secondary, balanceField: nil),
     ]
 
     static let defaultEnabledIDs: Set<String> = ["claude", "zai", "deepseek"]

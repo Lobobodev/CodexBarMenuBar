@@ -96,6 +96,8 @@ final class UsageDataManager {
         timerTask = Task { [weak self] in
             while !Task.isCancelled {
                 try? await Task.sleep(for: .seconds(interval))
+                let batterySaver = UserDefaults.standard.bool(forKey: "batterySaverEnabled")
+                if batterySaver && PowerSource.isOnBattery { continue }
                 await self?.refresh()
             }
         }
@@ -127,6 +129,7 @@ final class UsageDataManager {
                 usages[id] = parseUsage(result, config: config)
             }
         }
+        QuotaNotifier.shared.evaluate(providers: configs, usages: usages)
     }
 
     func refresh(providerID: String) async {

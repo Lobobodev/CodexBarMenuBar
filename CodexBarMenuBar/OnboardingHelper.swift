@@ -15,16 +15,12 @@ enum OnboardingHelper {
         guard !UserDefaults.standard.bool(forKey: dismissedKey) else { return }
 
         let alert = NSAlert()
-        alert.messageText = "CodexBar CLI Not Found"
-        alert.informativeText = """
-        CodexBarMenuBar requires CodexBar to fetch AI usage data. Without it, the menu bar will be empty.
-
-        Install CodexBar via Homebrew? This will open Terminal and run the install command.
-        """
+        alert.messageText = String(localized: "CodexBar CLI Not Found")
+        alert.informativeText = String(localized: "CodexBarMenuBar requires CodexBar to fetch AI usage data. Without it, the menu bar will be empty.\n\nInstall CodexBar via Homebrew? This will open Terminal and run the install command.")
         alert.alertStyle = .informational
-        alert.addButton(withTitle: "Install via Homebrew")
-        alert.addButton(withTitle: "Visit Website")
-        alert.addButton(withTitle: "Don't Show Again")
+        alert.addButton(withTitle: String(localized: "Install via Homebrew"))
+        alert.addButton(withTitle: String(localized: "Visit Website"))
+        alert.addButton(withTitle: String(localized: "Don't Show Again"))
 
         NSApp.activate()
         switch alert.runModal() {
@@ -65,8 +61,8 @@ enum OnboardingHelper {
             pasteboard.setString("brew install --cask codexbar", forType: .string)
 
             let fallback = NSAlert()
-            fallback.messageText = "Command Copied"
-            fallback.informativeText = "The install command has been copied to your clipboard. Open Terminal and paste it (⌘V) to run."
+            fallback.messageText = String(localized: "Command Copied")
+            fallback.informativeText = String(localized: "The install command has been copied to your clipboard. Open Terminal and paste it (⌘V) to run.")
             fallback.runModal()
         }
     }

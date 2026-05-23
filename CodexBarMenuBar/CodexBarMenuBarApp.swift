@@ -24,6 +24,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         menuBarManager = MenuBarManager(dataManager: dataManager)
+        QuotaNotifier.shared.requestPermissionIfNeeded()
 
         Task { @MainActor in
             try? await Task.sleep(for: .seconds(1))

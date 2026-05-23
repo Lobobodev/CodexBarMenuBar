@@ -24,19 +24,19 @@ final class MenuBarManager {
     private func setupMenu() {
         let menu = NSMenu()
 
-        let settingsItem = NSMenuItem(title: "Settings...", action: #selector(openSettings(_:)), keyEquivalent: ",")
+        let settingsItem = NSMenuItem(title: String(localized: "Settings..."), action: #selector(openSettings(_:)), keyEquivalent: ",")
         settingsItem.target = self
         menu.addItem(settingsItem)
 
         menu.addItem(.separator())
 
-        let refreshItem = NSMenuItem(title: "Refresh", action: #selector(refreshClicked(_:)), keyEquivalent: "r")
+        let refreshItem = NSMenuItem(title: String(localized: "Refresh"), action: #selector(refreshClicked(_:)), keyEquivalent: "r")
         refreshItem.target = self
         menu.addItem(refreshItem)
 
         menu.addItem(.separator())
 
-        let quitItem = NSMenuItem(title: "Quit CodexBarMenuBar", action: #selector(quitClicked(_:)), keyEquivalent: "q")
+        let quitItem = NSMenuItem(title: String(localized: "Quit CodexBarMenuBar"), action: #selector(quitClicked(_:)), keyEquivalent: "q")
         quitItem.target = self
         menu.addItem(quitItem)
 
