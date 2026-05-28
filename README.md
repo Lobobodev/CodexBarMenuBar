@@ -59,7 +59,7 @@ If you're satisfied with CodexBar's built-in merged mode, **you don't need this 
 
 ## Versioning
 
-**This app's version tracks [CodexBar CLI](https://github.com/steipete/CodexBar) version.** For example, CodexBarMenuBar `0.29.0` matches CodexBar CLI `0.29.0`. Always install the matching version of both.
+**This app's version tracks [CodexBar CLI](https://github.com/steipete/CodexBar) version.** For example, CodexBarMenuBar `0.30.0` matches CodexBar CLI `0.30.0`. Always install the matching version of both.
 
 ## Features
 
@@ -93,13 +93,13 @@ Automatically installs CodexBar CLI too. Upgrade with `brew upgrade --cask codex
 
 ### Option B: Direct download via curl
 ```bash
-curl -L -o CodexBarMenuBar.zip https://github.com/Lobobodev/CodexBarMenuBar/releases/latest/download/CodexBarMenuBar-v0.29.0.zip
+curl -L -o CodexBarMenuBar.zip https://github.com/Lobobodev/CodexBarMenuBar/releases/latest/download/CodexBarMenuBar-v0.30.0.zip
 unzip CodexBarMenuBar.zip -d /Applications/
 open /Applications/CodexBarMenuBar.app
 ```
 
 ### Option C: Manual download
-1. Download `CodexBarMenuBar-v0.29.0.zip` from [Releases](../../releases)
+1. Download `CodexBarMenuBar-v0.30.0.zip` from [Releases](../../releases)
 2. Unzip and drag `CodexBarMenuBar.app` to `/Applications`
 3. Double-click — no Gatekeeper warnings (app is signed & notarized by Apple)
 
@@ -111,7 +111,7 @@ open CodexBarMenuBar.xcodeproj
 ```
 Then build and run with `Cmd+R` in Xcode.
 
-## Supported Providers (matches CodexBar CLI 0.29+)
+## Supported Providers (matches CodexBar CLI 0.30+)
 
 | Type | Providers |
 |------|-----------|
@@ -188,7 +188,7 @@ AI 用量始终在你眼前，再也不用埋在别的窗口里。
 
 ## 版本号说明
 
-**本应用的版本号跟随 [CodexBar CLI](https://github.com/steipete/CodexBar) 版本。** 例如 CodexBarMenuBar `0.29.0` 对应 CodexBar CLI `0.29.0`。请始终安装版本相匹配的两个程序。
+**本应用的版本号跟随 [CodexBar CLI](https://github.com/steipete/CodexBar) 版本。** 例如 CodexBarMenuBar `0.30.0` 对应 CodexBar CLI `0.30.0`。请始终安装版本相匹配的两个程序。
 
 ## 功能
 
@@ -222,13 +222,13 @@ brew install --cask Lobobodev/tap/codexbarmenubar
 
 ### 方式 B：curl 直接下载
 ```bash
-curl -L -o CodexBarMenuBar.zip https://github.com/Lobobodev/CodexBarMenuBar/releases/latest/download/CodexBarMenuBar-v0.29.0.zip
+curl -L -o CodexBarMenuBar.zip https://github.com/Lobobodev/CodexBarMenuBar/releases/latest/download/CodexBarMenuBar-v0.30.0.zip
 unzip CodexBarMenuBar.zip -d /Applications/
 open /Applications/CodexBarMenuBar.app
 ```
 
 ### 方式 C：手动下载
-1. 从 [Releases](../../releases) 下载 `CodexBarMenuBar-v0.29.0.zip`
+1. 从 [Releases](../../releases) 下载 `CodexBarMenuBar-v0.30.0.zip`
 2. 解压后将 `CodexBarMenuBar.app` 拖入 `/Applications`
 3. 双击启动 — 无 Gatekeeper 警告（应用已签名 + Apple 公证）
 
@@ -240,7 +240,7 @@ open CodexBarMenuBar.xcodeproj
 ```
 在 Xcode 中 `Cmd+R` 运行。
 
-## 支持的 Provider（对应 CodexBar CLI 0.29+）
+## 支持的 Provider（对应 CodexBar CLI 0.30+）
 
 | 类型 | Provider |
 |------|----------|
